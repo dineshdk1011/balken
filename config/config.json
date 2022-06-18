@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "balken",
+    "password": "FKGAbyizmdp2mEpc",
+    "database": "balken",
+    "host": "168.119.159.183",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "balken",
+    "password": "FKGAbyizmdp2mEpc",
+    "database": "balken",
+    "host": "168.119.159.183",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "balken",
+    "password": "FKGAbyizmdp2mEpc",
+    "database": "balken",
+    "host": "168.119.159.183",
+    "dialect": "mysql"
+  }
+}
