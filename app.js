@@ -19,6 +19,7 @@ var countdownRouter = require("./routes/countdown");
 var tags = require("./routes/tags");
 var review = require("./routes/review");
 var testimonial = require("./routes/testimonial");
+var admin = require("./routes/admin");
 
 var app = express();
 app.use(cors());
@@ -47,6 +48,7 @@ app.use("/countdown", countdownRouter);
 app.use("/tags", tags);
 app.use("/review", review);
 app.use("/testimonial", testimonial);
+app.use("/admin", admin);
 
 
 // catch 404 and forward to error handler
