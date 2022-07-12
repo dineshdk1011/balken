@@ -4,6 +4,15 @@ const bcrypt = require("bcryptjs");
 const secret = "4641316895";
 const jwt = require("jsonwebtoken");
 const { v1: uuidv1 } = require("uuid");
+const nodemailer = require('nodemailer')
+
+var smtpTransport = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'noreply@cmcacademy.ac.in',
+    pass: 'welcome@2022' // naturally, replace both with your real credentials or an application-specific password
+  }
+});
 
 const create = async (req, res) => {
   try {
@@ -50,6 +59,42 @@ const create = async (req, res) => {
 const login = async (req, res) => {
   try {
     let user = await User.findOne({ where: { email: req.body.email } });
+    if (user) {
+      let passwordresult = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
+      if (passwordresult == true) {
+        let token = jwt.sign({ userid: user.userid }, secret, {
+          expiresIn: "8h",
+        });
+        res.json({
+          status: 200,
+          message: "SUCCESS",
+          data: { token, user },
+        });
+      } else {
+        res.json({
+          status: 400,
+          message: "Wrong Password.. Please Check",
+        });
+      }
+    } else {
+      res.json({
+        status: 400,
+        message: "User Not Found.. Please Check",
+      });
+    }
+  } catch (err) {
+    res.json({
+      status: 500,
+      message: "Some error occurred in query",
+    });
+  }
+};
+const loginmobile = async (req, res) => {
+  try {
+    let user = await User.findOne({ where: { phone: req.body.phone } });
     if (user) {
       let passwordresult = await bcrypt.compare(
         req.body.password,
@@ -265,6 +310,30 @@ const destroy = async (req, res) => {
     });
   }
 };
+const mail = async (req, res) => {
+  try {
+    const { otp, email } = req.body
+    var html = `Your OTP : ${otp}`
+    const mailOptions = {
+      from: 'noreply@cmcacademy.ac.in',
+      to: email,
+      subject: 'OTP',
+      text: "Otp from Balken",
+      html: html
+    };
+
+    smtpTransport.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        return res.send(true)
+      }
+    });
+
+  } catch (err) {
+    res.status(500)
+  }
+}
 
 module.exports = {
   create,
@@ -275,4 +344,6 @@ module.exports = {
   login,
   jwtvalidation,
   passwordchange,
+  mail,
+  loginmobile
 };

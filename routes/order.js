@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/create', orderController.create)
-router.put('/update', orderController.update)
+router.post('/update', orderController.update)
 router.post('/view', orderController.view)
 router.get('/viewall', orderController.viewall)
 router.post('/destroy', orderController.destroy)

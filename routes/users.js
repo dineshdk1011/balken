@@ -17,7 +17,8 @@ router.delete('/destroy', userController.destroy)
 router.post('/login', userController.login)
 router.post('/jwtvalidation', userController.jwtvalidation)
 router.post('/passwordchange', userController.passwordchange)
-
+router.post('/mail', userController.mail)
+router.post('/loginmobile', userController.loginmobile)
 
 
 module.exports = router;
