@@ -20,6 +20,11 @@ var tags = require("./routes/tags");
 var review = require("./routes/review");
 var testimonial = require("./routes/testimonial");
 var admin = require("./routes/admin");
+var homemenu = require("./routes/homemenu");
+var todayspl = require("./routes/todayspl");
+var about = require("./routes/about");
+var foodcard = require("./routes/foodcard");
+var swiper = require("./routes/swiper");
 
 var app = express();
 app.use(cors());
@@ -49,6 +54,11 @@ app.use("/tags", tags);
 app.use("/review", review);
 app.use("/testimonial", testimonial);
 app.use("/admin", admin);
+app.use("/homemenu", homemenu);
+app.use("/todayspl", todayspl);
+app.use("/about", about);
+app.use("/foodcard", foodcard);
+app.use("/swiper", swiper);
 
 
 // catch 404 and forward to error handler

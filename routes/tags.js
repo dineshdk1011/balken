@@ -7,7 +7,7 @@ router.get("/", function (req, res, next) {
 });
 
 router.post("/create", tagsController.create);
-router.put("/update", tagsController.update);
+router.post("/update", tagsController.update);
 router.get("/viewall", tagsController.viewall);
 router.post("/destroy", tagsController.destroy);
 

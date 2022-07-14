@@ -39,7 +39,7 @@ const viewall = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  const value = req.body.value;
+  const value = req.body;
   const id = req.body.id;
   if (!req.body) {
     res.status(400).send({
