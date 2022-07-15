@@ -1,5 +1,5 @@
 const models = require('../models');
-const Foodcards = models.Foodcards
+const Homemenu = models.Foodcard
 
 const create = async (req, res) => {
     const data = req.body;
@@ -10,7 +10,7 @@ const create = async (req, res) => {
         return;
     }
 
-    await Foodcards.create(data).then(data => {
+    await Homemenu.create(data).then(data => {
         res.json({
             status: 200,
             message: "SUCCESS",
@@ -25,7 +25,7 @@ const create = async (req, res) => {
 }
 
 const viewall = async (req, res) => {
-    await Foodcards.findAll().then(data => {
+    await Homemenu.findAll().then(data => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
@@ -46,7 +46,7 @@ const update = async (req, res) => {
         return;
     }
 
-    await Foodcards.update(value, {
+    await Homemenu.update(value, {
         where: {
             id: id
         }
@@ -69,7 +69,7 @@ const destroy = async (req, res) => {
         });
         return;
     }
-    await Foodcards.destroy({ where: { id: data } }).then(() => {
+    await Homemenu.destroy({ where: { id: data } }).then(() => {
         res.send("Deleted Successfully");
     }).catch(err => {
         res.status(500).send({
