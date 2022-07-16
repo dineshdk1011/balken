@@ -25,6 +25,8 @@ var todayspl = require("./routes/todayspl");
 var about = require("./routes/about");
 var foodcard = require("./routes/foodcard");
 var swiper = require("./routes/swiper");
+var employee = require("./routes/employee");
+var aboutpart = require("./routes/aboutpart");
 
 var app = express();
 app.use(cors());
@@ -59,6 +61,8 @@ app.use("/todayspl", todayspl);
 app.use("/about", about);
 app.use("/foodcard", foodcard);
 app.use("/swiper", swiper);
+app.use("/employee", employee);
+app.use("/aboutpart", aboutpart);
 
 
 // catch 404 and forward to error handler
