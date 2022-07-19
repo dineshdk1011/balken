@@ -11,5 +11,6 @@ router.put('/update', enquiryController.update)
 router.post('/view', enquiryController.view)
 router.get('/viewall', enquiryController.viewall)
 router.post('/destroy', enquiryController.destroy)
+router.post('/mail', enquiryController.mail)
 
 module.exports = router;

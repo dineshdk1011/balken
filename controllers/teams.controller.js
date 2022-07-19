@@ -1,15 +1,5 @@
 const models = require("../models");
-const Enquiry = models.Enquiry;
-const { v1: uuidv1 } = require("uuid");
-const nodemailer = require('nodemailer')
-
-var smtpTransport = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'noreply@cmcacademy.ac.in',
-    pass: 'welcome@2022' // naturally, replace both with your real credentials or an application-specific password
-  }
-});
+const Teams = models.Teams;
 
 const create = async (req, res) => {
   const data = req.body;
@@ -20,7 +10,7 @@ const create = async (req, res) => {
     return;
   }
 
-  await Enquiry.create(data)
+  await Teams.create(data)
     .then((data) => {
       res.json({
         status: 200,
@@ -37,27 +27,7 @@ const create = async (req, res) => {
 };
 
 const viewall = async (req, res) => {
-  await Enquiry.findAll()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occurred in query.",
-      });
-    });
-};
-
-const view = async (req, res) => {
-  const data = req.body.id;
-  if (!req.body) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-    return;
-  }
-
-  await Enquiry.findAll({ where: { id: data } })
+  await Teams.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -78,7 +48,7 @@ const update = async (req, res) => {
     return;
   }
 
-  await Enquiry.update(value, {
+  await Teams.update(value, {
     where: {
       id: id,
     },
@@ -94,7 +64,8 @@ const update = async (req, res) => {
 };
 
 const destroy = async (req, res) => {
-  const data = req.body.id;
+  console.log(req.body.memberid);
+  const data = req.body.memberid;
 
   if (!req.body) {
     res.status(400).send({
@@ -102,46 +73,21 @@ const destroy = async (req, res) => {
     });
     return;
   }
-  await Enquiry.destroy({ where: { id: data } })
+  await Teams.destroy({ where: { memberid: data } })
     .then(() => {
       res.send("Deleted Successfully");
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).send({
         message: err.message || "Some error occurred in query.",
       });
     });
 };
 
-const mail = async (req, res) => {
-  try {
-    const { msg,email } = req.body
-    var html = `${msg}`
-    const mailOptions = {
-      from: 'noreply@cmcacademy.ac.in',
-      to: email,
-      subject: 'Replay',
-      text: "Replay from Balken",
-      html: html
-    };
-
-    smtpTransport.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        return res.send(true)
-      }
-    });
-
-  } catch (err) {
-    res.status(500)
-  }
-}
 module.exports = {
   create,
   viewall,
-  view,
   update,
   destroy,
-  mail
 };

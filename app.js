@@ -27,6 +27,9 @@ var foodcard = require("./routes/foodcard");
 var swiper = require("./routes/swiper");
 var employee = require("./routes/employee");
 var aboutpart = require("./routes/aboutpart");
+var mission = require("./routes/mission");
+var notified = require("./routes/notified");
+var teams = require("./routes/teams");
 
 var app = express();
 app.use(cors());
@@ -63,7 +66,9 @@ app.use("/foodcard", foodcard);
 app.use("/swiper", swiper);
 app.use("/employee", employee);
 app.use("/aboutpart", aboutpart);
-
+app.use("/mission", mission);
+app.use("/notified", notified);
+app.use("/teams", teams);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
