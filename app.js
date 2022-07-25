@@ -30,6 +30,7 @@ var aboutpart = require("./routes/aboutpart");
 var mission = require("./routes/mission");
 var notified = require("./routes/notified");
 var teams = require("./routes/teams");
+var notifiation = require("./routes/notifiation");
 
 var app = express();
 app.use(cors());
@@ -69,6 +70,7 @@ app.use("/aboutpart", aboutpart);
 app.use("/mission", mission);
 app.use("/notified", notified);
 app.use("/teams", teams);
+app.use("/notifiation", notifiation);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
