@@ -88,37 +88,24 @@ const login = async (req, res) => {
 };
 const passwordchange = async (req, res) => {
   try {
-    let user = await Admin.findOne({ where: { phone: Number(req.body.phone) } });
+    let user = await Admin.findOne({ where: { id: req.body.id } });
     if (user) {
-      let passwordresult = await bcrypt.compare(
-        req.body.password,
-        Admin.password
-      );
-      if (passwordresult == true) {
-        var salt = bcrypt.genSaltSync(10);
-        var id = req.body.id;
-        var data = {
-          password: bcrypt.hashSync(req.body.newpassword, salt),
-        };
-        await Admin.update(data, {
-          where: {
-            id: id,
-          },
-        })
-          .then(() => {
-            res.send("Updated Successfully");
-          })
-          .catch((err) => {
-            res.status(404).send({
-              message: err.message || "Some error occurred in query.",
-            });
+      var salt = bcrypt.genSaltSync(10);
+      var data = {
+        password: bcrypt.hashSync(req.body.password, salt),
+      };
+      await Admin.update(data, {
+        where: {
+          id: req.body.id,
+        },
+      }).then(() => {
+        res.send("Updated Successfully");
+      })
+        .catch((err) => {
+          res.status(404).send({
+            message: err.message || "Some error occurred in query.",
           });
-      } else {
-        res.json({
-          status: 400,
-          message: "Wrong Password.. Please Check",
         });
-      }
     } else {
       res.json({
         status: 400,
