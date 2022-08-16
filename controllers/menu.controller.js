@@ -41,6 +41,25 @@ const viewall = async (req, res) => {
     });
 };
 
+const view_by_category = async (req, res) => {
+  const data = req.body.category;
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+
+  await Menu.findAll({ where: { category: data } })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred in query.",
+      });
+    });
+};
 const view = async (req, res) => {
   const data = req.body.foodid;
   if (!req.body) {
@@ -109,6 +128,7 @@ const destroy = async (req, res) => {
 module.exports = {
   create,
   viewall,
+  view_by_category,
   view,
   update,
   destroy,

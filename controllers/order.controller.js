@@ -4,7 +4,6 @@ const { v1: uuidv1 } = require('uuid')
 
 const create = async (req, res) => {
     const data = req.body;
-    data["orderid"] = uuidv1()
     if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty!"

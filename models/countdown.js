@@ -16,7 +16,12 @@ module.exports = (sequelize, DataTypes) => {
   Countdown.init({
     date: DataTypes.STRING,
     time: DataTypes.STRING,
-    notes: DataTypes.STRING
+    notes: DataTypes.STRING,
+    todate: DataTypes.STRING,
+    totime: DataTypes.STRING,
+    price: DataTypes.STRING,
+    foods: DataTypes.STRING,
+    category: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Countdown',

@@ -28,6 +28,7 @@ const viewall = async (req, res) => {
     await Video.findAll().then(data => {
         res.send(data);
     }).catch(err => {
+        console.log(err);
         res.status(500).send({
             message:
                 err.message || "Some error occurred in query."

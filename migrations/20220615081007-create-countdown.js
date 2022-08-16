@@ -17,6 +17,19 @@ module.exports = {
       notes: {
         type: Sequelize.STRING
       },
+      todate: {
+        type: Sequelize.STRING
+      },
+      totime: {
+        type: Sequelize.STRING
+      },
+      price: {
+        type: Sequelize.STRING
+      },
+      foods: {
+        type: Sequelize.STRING
+      },
+     
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
