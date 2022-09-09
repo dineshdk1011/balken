@@ -31,6 +31,7 @@ var mission = require("./routes/mission");
 var socialMedia = require("./routes/socialMedia");
 var notified = require("./routes/notified");
 var teams = require("./routes/teams");
+var Theme = require("./routes/theme");
 var notifiation = require("./routes/notifiation");
 
 var app = express();
@@ -68,6 +69,7 @@ app.use("/foodcard", foodcard);
 app.use("/swiper", swiper);
 app.use("/employee", employee);
 app.use("/aboutpart", aboutpart);
+app.use("/Theme", Theme);
 app.use("/mission", mission);
 app.use("/socialMedia", socialMedia);
 app.use("/notified", notified);
