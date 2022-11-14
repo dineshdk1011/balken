@@ -33,6 +33,7 @@ var notified = require("./routes/notified");
 var teams = require("./routes/teams");
 var Theme = require("./routes/theme");
 var notifiation = require("./routes/notifiation");
+var address = require("./routes/address");
 
 var app = express();
 app.use(cors());
@@ -75,6 +76,8 @@ app.use("/socialMedia", socialMedia);
 app.use("/notified", notified);
 app.use("/teams", teams);
 app.use("/notifiation", notifiation);
+app.use("/address", address);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
